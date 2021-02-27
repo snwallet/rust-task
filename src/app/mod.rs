@@ -31,6 +31,12 @@ async fn router(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
         (&Method::POST, "/user/update") => user::update::main(req).await,
         (&Method::POST, "/user/delete") => user::delete::main(req).await,
 
+        //task
+        (&Method::POST, "/task/insert") => task::insert::main(req).await,
+        (&Method::POST, "/task/select") => task::select::main(req).await,
+        (&Method::POST, "/task/update") => task::update::main(req).await,
+        (&Method::POST, "/task/delete") => task::delete::main(req).await,
+
         _ => Ok(Response::builder().status(StatusCode::NOT_FOUND).body(Body::from("".to_string())).unwrap()),
     }
 }

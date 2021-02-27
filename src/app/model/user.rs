@@ -15,7 +15,7 @@ pub struct User {
 
 
 
-// #[allow(dead_code)]
+#[allow(dead_code)]
 pub fn insert(user_name:&str, user_pwd:&str) -> u64 {
     let pwd = common::md5(user_pwd);
     let mut conn = db::pool().get_conn().unwrap();
