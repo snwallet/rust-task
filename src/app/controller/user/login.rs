@@ -13,7 +13,7 @@ pub async fn main(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
         let pwd = params.get("pwd").unwrap();
         let login_user = user::login(name, pwd);
         if login_user.len()==1 {
-            JsonRes::new(0,"success".to_string(),login_user)
+            JsonRes::new(0,"success".to_string(),login_user[0].id)
         }else{
             JsonRes::new(-2,"name error or pwd error".to_string(),"")
         }
