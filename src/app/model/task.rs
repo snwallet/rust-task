@@ -92,6 +92,18 @@ pub fn select_id(id:&str) -> Vec<Task> {
 }
 
 #[allow(dead_code)]
+pub fn select_user_id(id:&str) -> Vec<Task> {
+    let mut conn = db::pool().get_conn().unwrap();
+    let ret = "select id,title,content,create_time,user_id,user_name,start_time,end_time from task where is_delete=? and user_id=?"
+        .with((0,id))
+        .map(&mut conn, |(id,title,content,create_time,user_id,user_name,start_time,end_time)|{
+            Task{id,title,content,create_time,user_id,user_name,start_time,end_time}
+        }).unwrap();
+    println!("{:?}",ret);
+    ret
+}
+
+#[allow(dead_code)]
 pub fn task_add_user(user_id:&str, user_name:&str,id:&str) -> u64 {
     let time = common::get_timestamp();
     let mut conn = db::pool().get_conn().unwrap();
