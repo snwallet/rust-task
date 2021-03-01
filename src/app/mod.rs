@@ -32,6 +32,8 @@ async fn router(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
         (&Method::POST, "/user/delete") => user::delete::main(req).await,
 
         //task
+        (&Method::POST, "/task/add_user") => task::add_user::main(req).await,
+        (&Method::POST, "/task/end_user") => task::end_user::main(req).await,
         (&Method::POST, "/task/insert") => task::insert::main(req).await,
         (&Method::POST, "/task/select") => task::select::main(req).await,
         (&Method::POST, "/task/update") => task::update::main(req).await,
